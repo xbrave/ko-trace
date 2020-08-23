@@ -18,10 +18,10 @@ function carryRocket(eventId,fun,params){
         }, eventInfoAnalyze(final_event),params,result))
       }
     }else{
-      console.error(new Error("the second param in Dttrace.carryRocket must be function"));
+      console.error(new Error("the second param in Kotrace.carryRocket must be function"));
     }
   }else{
-    console.error(new Error("the first param in Dttrace.carryRocket must be number"));
+    console.error(new Error("the first param in Kotrace.carryRocket must be number"));
   }
 }
 
@@ -89,12 +89,12 @@ function launchRocket(eventId,params,event){
     }
     send(final_params);
   }else{
-    console.error(new Error("the first param in Dttrace.launchRocket must be number"));
+    console.error(new Error("the first param in Kotrace.launchRocket must be number"));
   }
 }
 
 
-const Dttrace={
+const Kotrace={
   init,
   launchRocket,
   carryRocket,
@@ -103,4 +103,4 @@ const Dttrace={
   Param
 }
 
-export default Dttrace;
+export default Kotrace;

@@ -76,7 +76,7 @@ const send = (params) => {
       callH5(options.server_url,newParams);
     }
   }else{
-    console.error(new Error('Dttrace not init,please excute Dttrace.init'));
+    console.error(new Error('Kotrace not init,please excute Kotrace.init'));
   }
 }
 export default send;

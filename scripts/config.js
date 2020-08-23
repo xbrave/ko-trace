@@ -4,28 +4,28 @@ const uglify=require('rollup-plugin-uglify').uglify;
 const version = process.env.VERSION || require('../package.json').version;
 const banner =
   '/*!\n' +
-  ' * Dttrace.js v' + version + '\n' +
-  ' * (c) 2018-' + new Date().getFullYear() + ' Rui Chengping\n' +
+  ' * ko-trace.js v' + version + '\n' +
+  ' * (c) 2018-' + new Date().getFullYear() + ' dtstack\n' +
   ' * Released under the MIT License.\n' +
   ' */';
 const builds={
   "dev-common":{
-    dest:path.resolve(__dirname,'../test/common-html/dttrace.js'),
+    dest:path.resolve(__dirname,'../test/common-html/ko-trace.js'),
     format:'umd',
     banner
   },
   "dev-react":{
-    dest:path.resolve(__dirname,'../test/react-webpack/dttrace.js'),
+    dest:path.resolve(__dirname,'../test/react-webpack/ko-trace.js'),
     format:'umd',
     banner
   },
   "production":{
-    dest:path.resolve(__dirname,'../lib/dttrace.js'),
+    dest:path.resolve(__dirname,'../lib/ko-trace.js'),
     format:'umd',
     banner    
   },
   "production:min":{
-    dest:path.resolve(__dirname,'../lib/dttrace.min.js'),
+    dest:path.resolve(__dirname,'../lib/ko-trace.min.js'),
     format:'umd',
     plugins:[
       uglify()
@@ -38,7 +38,7 @@ function getConfig(name){
   const config={
     input:path.resolve(__dirname,'../src/index.js'),
     output:{
-      name:'Dttrace',
+      name:'Kotrace',
       file: opts.dest,
       format: opts.format,
       banner: opts.banner,

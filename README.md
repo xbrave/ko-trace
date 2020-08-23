@@ -1,4 +1,4 @@
-# Dttrace JS SDK
+# Kotrace JS SDK
 ## 预置采集数据
 字段 | 描述
 -----|-----
@@ -43,13 +43,13 @@
 ```
 npm install dttrace --save
 
-import Dttrace from 'dttrace';
+import Kotrace from 'dttrace';
 ```
 ## 用法
 ### 第一步 初始化
 
 ```
-Dttrace.init({
+Kotrace.init({
     appKey:<申请应用获得的appKey，必填>,
     getSessionId:function(){
         return <用户系统自己分配的sessionId>;
@@ -57,7 +57,7 @@ Dttrace.init({
     getUserId:function(){
         return <用户系统自己分配的userId>;
     },
-    sessionExpiration:'<Dttrace.js生成的session的过期时间，非必填>',
+    sessionExpiration:'<Kotrace.js生成的session的过期时间，非必填>',
     params:<自定义预置采集数据，会与Dttrace预置采集数据组合（Object），但不会覆盖Dttrace预置数据>，
     debug:<是否开启Debug模式，非必填，默认false>
 });
@@ -77,7 +77,7 @@ Dttrace.init({
 
 #### 第二种：调用Dttrace.launchRocket
 ```
-Dttrace.launchRocket(eventid,extraParams,event);
+Kotrace.launchRocket(eventid,extraParams,event);
 ```
 - **eventid** 必选。事件id。 类型：Number
 - **extraParams** 非必选。额外采集的数据。类型：Object
@@ -94,7 +94,7 @@ Dttrace.launchRocket(eventid,extraParams,event);
 ```
 var btn=document.getElementById("btn1");
 
-btn.onclick=Dttrace.carryRocket(eventid,function(e){
+btn.onclick=Kotrace.carryRocket(eventid,function(e){
     console.log(e.target);
     return extraParamsTwo;
 },extraParamsOne);
@@ -163,10 +163,10 @@ class App extends PureComponent{
 **示例：**
 
 ```
-    Dttrace.init({
+    Kotrace.init({
         appKey:"dttrace-123456",
         getSessionId: function(){
-            return Dttrace.cookie.get('SESSIONID')
+            return Kotrace.cookie.get('SESSIONID')
         },  
         getUserId: function(){
             return window.userId;
@@ -207,7 +207,7 @@ class App extends PureComponent{
 ```
     var form=document.getElementById("form_register");
     form.onsubmit=function(e){
-        Dttrace.launchRocket(3008,{
+        Kotrace.launchRocket(3008,{
             form_type:"register",
             username:form.username.value,
             password:form.password.value
@@ -241,7 +241,7 @@ class App extends PureComponent{
 **js**
 ```
     var form=document.getElementById("form_search");
-    form.onsubmit=Dttrace.carryRocket(3008,function(){
+    form.onsubmit=Kotrace.carryRocket(3008,function(){
         ...
         execute your code about business
         ...
@@ -261,8 +261,8 @@ class App extends PureComponent{
 **示例：**
 
 ```
-   Dttrace.Param.get("realName"); //获取预置采集数据"realName"对应的值
-   Dttrace.Param.get(); //获取当前全局预置采集数据
+   Kotrace.Param.get("realName"); //获取预置采集数据"realName"对应的值
+   Kotrace.Param.get(); //获取当前全局预置采集数据
 ```
 
 ### Param.set
@@ -274,7 +274,7 @@ class App extends PureComponent{
 
 ```
     //全局预置采集数据添加一条realName(隔壁老王)的预置采集数据
-    Dttrace.Param.set({
+    Kotrace.Param.set({
         "realName":"隔壁老王"
     }); 
 ```
@@ -287,7 +287,7 @@ class App extends PureComponent{
 **示例：**
 
 ```
-    Dttrace.Param.remove("realName"); //获取预置采集数据"realName"对应的值
+    Kotrace.Param.remove("realName"); //获取预置采集数据"realName"对应的值
 ```
 
 ### cookie.get
@@ -298,7 +298,7 @@ class App extends PureComponent{
 **示例：**
 
 ```
-    Dttrace.cookie.get("realName"); //获取cookie中"realName"对应的值
+    Kotrace.cookie.get("realName"); //获取cookie中"realName"对应的值
 ```
 
 ### cookie.set
@@ -313,7 +313,7 @@ class App extends PureComponent{
 **示例：**
 
 ```
-    Dttrace.cookie.set("realName","袋鼠宝宝",60*1000,true,false); //设置cookie中"realName"为"袋鼠宝宝"，domain为当前主域，secure为false
+    Kotrace.cookie.set("realName","袋鼠宝宝",60*1000,true,false); //设置cookie中"realName"为"袋鼠宝宝"，domain为当前主域，secure为false
 ```
 
 ### cookie.remove
@@ -325,5 +325,5 @@ class App extends PureComponent{
 **示例：**
 
 ```
-    Dttrace.cookie.remove("realName",true); //删除cookie中"realName"字段
+    Kotrace.cookie.remove("realName",true); //删除cookie中"realName"字段
 ```
