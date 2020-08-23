@@ -35,16 +35,15 @@ export default () => {
       addEventListener(window,'load',pageEnterHandler,false);
     }
 
-  
     //代理所有className为dttrace的dom元素
     const element_body = document.getElementsByTagName('body')[0];
     addEventListener(element_body, 'click',(arg_event)=>{
       const final_event = window.event || arg_event;
       const target_element =final_event.target||final_event.srcElement;
-      if (target_element.className.indexOf('dttrace') > -1) {
+      if (target_element.className.indexOf('kotrace') > -1) {
         const params = {};
         for(let key in target_element.dataset){
-          if (key.indexOf('dttrace') > -1) {
+          if (key.indexOf('kotrace') > -1) {
             params[key.substring(7).toLocaleLowerCase()] = target_element.dataset[key];
           }
         }

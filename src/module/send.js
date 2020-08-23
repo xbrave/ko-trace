@@ -1,7 +1,8 @@
 import Option from './option';
 import Param from './param';
-import md5 from '../utils/md5';
-const hex_md5=md5.hex_md5;
+import param from './param';
+// import md5 from '../utils/md5';
+// const hex_md5=md5.hex_md5;
 //判断是否为Android
 function isAndroid(){
   return navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Adr') > -1;
@@ -42,7 +43,7 @@ function callH5(url,params){
 function serilize(params){
   let args = ''
   for (let i in params) {
-    if (args != '') {
+    if (args != '' && params[i]) {
       args += '&';
     }
 
@@ -59,10 +60,11 @@ const send = (params) => {
   const options=Option.get();
   if(options.status){
     const timestamp=new Date().getTime();
-    const token=hex_md5(options.appKey+timestamp);
+    //TODO: remove token temporarily, when use appKey
+    // const token=hex_md5(options.appKey+timestamp);
     const newParams=Object.assign({},Param.get(),params,{
       $timestamp:timestamp,
-      $token:token
+      // $token:token
     });
     if(isAndroid()){
       callAndroid(newParams,()=>{

@@ -26,7 +26,7 @@ function carryRocket(eventId,fun,params){
 }
 
 //DtaRocket注解
-function DttraceRocket(eventId,params) {
+function KotraceRocket(eventId,params) {
   if(typeof eventId === 'number'){
     const final_params=Object.assign({
       $event_id:eventId
@@ -36,39 +36,33 @@ function DttraceRocket(eventId,params) {
       return target;
     }
   }else{
-    console.error(new Error("the first param in @DttraceRocket must be number"));
+    console.error(new Error("the first param in @KotraceRocket must be number"));
   }
 }
 
 // 初始化
 const init = (args) => {
   const {
-    appKey,
+    serverUrl,
     getSessionId,
     getUserId,
     sessionExpiration,
-    serverUrl,
     debug,
     params
   } = args;
 
   try{
-    if (!appKey) throw new Error('appKey no exist');
+    if (!serverUrl) throw new Error('parameter\'s serverUrl is required!');
   }catch(err){
     Option.set({status:0});
     console.error(err);
   }
 
   if(Option.get('status')){
-    let final_option={
-      appKey,
-      getSessionId,
-      getUserId,
-      debug
-    }
+    let final_option={};
+    if(typeof serverUrl === 'string') Object.assign(final_option,{server_url:serverUrl});
     if(typeof debug === 'boolean') Object.assign(final_option,{debug});
     if(typeof sessionExpiration === 'number') Object.assign(final_option,{session_expiration:sessionExpiration});
-    if(typeof serverUrl === 'string') Object.assign(final_option,{server_url:serverUrl});
     if(typeof getSessionId === 'function') Object.assign(final_option,{getSessionId});
     if(typeof getUserId === 'function') Object.assign(final_option,{getUserId});
 
@@ -98,7 +92,7 @@ const Kotrace={
   init,
   launchRocket,
   carryRocket,
-  DttraceRocket,
+  KotraceRocket,
   cookie,
   Param
 }

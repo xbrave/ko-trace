@@ -7,7 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-  <a href="http://www.baidu.com" data-dttrace-triggertype="action" data-dttrace-id="测试id">测试属性绑定</a>
+  <a class="kotrace" href="http://www.baidu.com" data-dttrace-triggertype="action" data-dttrace-id="测试id">测试属性绑定</a>
   <button id="btn">点击我</button>
   <button id="btn2" class="Dta" data-dta-type="action" data-dta-message="啦啦啦" >快来点击我</button>
   <button id="btn3" class="Dta" data-dta-type="action" data-dta-message="登录" >登录</button>
@@ -15,7 +15,7 @@
 <script src="ko-trace.js"></script>
 <script>
     Kotrace.init({
-      appKey:71704164,
+      serverUrl:'http://localhost:2000',
       debug:true
     });
   

@@ -1,8 +1,8 @@
 {
-  "name": "dtstack_js_sdk",
+  "name": "ko-trace",
   "version": "1.0.0",
   "description": "javascript library for log",
-  "main": "dta.js",
+  "main": "lib/ko-trace.js",
   "directories": {
     "test": "test"
   },
@@ -19,14 +19,16 @@
     "url": "git+https://github.com/DtstackDev/dtstack_js_sdk.git"
   },
   "keywords": [
-    "dta"
+    "log",
+    "trace",
+    "ko"
   ],
-  "author": "ruichengping",
-  "license": "ISC",
+  "author": "xbrave",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DtstackDev/dtstack_js_sdk/issues"
+    "url": "https://github.com/xbrave/ko-trace/issues"
   },
-  "homepage": "https://github.com/DtstackDev/dtstack_js_sdk#readme",
+  "homepage": "https://github.com/xbrave/ko-trace",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",

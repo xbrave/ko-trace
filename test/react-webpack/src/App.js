@@ -1,12 +1,12 @@
 import React,{PureComponent} from 'react';
-import {DttraceRocket,carryRocket,launchRocket} from '../dttrace';
+import {KotraceRocket,carryRocket} from '../ko-trace';
 
 class App extends PureComponent{
   state={
    count:0
   }
 
-  @DttraceRocket(1008,{type:"add"})
+  @KotraceRocket(1008,{type:"add"})
   add(){
     const {count}=this.state;
     this.setState({
@@ -17,7 +17,7 @@ class App extends PureComponent{
     }
   }
 
-  @DttraceRocket(1008)
+  @KotraceRocket(1008)
   subtract(){
     const {count}=this.state;
     if(count>0){

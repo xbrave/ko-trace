@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App.js';
-import Kotrace from '../dttrace';
+import Kotrace from '../ko-trace';
 Kotrace.init({
-  appKey:'71704164',
+  serverUrl: 'http://localhost:2000',
   getUserId:function(){
     return 'userId123' 
   },
@@ -15,3 +15,4 @@ render(
   <App></App>,
   document.getElementById("root")
 ); 
+  

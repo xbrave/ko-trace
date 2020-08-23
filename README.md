@@ -2,9 +2,8 @@
 ## 预置采集数据
 字段 | 描述
 -----|-----
-**$token** | Dttrace根据appKey生成的token
-**$app_key** | 申请应用获得的appKey
-**$dtsession_id** | 会话标识，由Dttrace自动生成
+**$token** | Kotrace的token
+**$dtsession_id** | 会话标识，由Kotrace自动生成
 **$session_id** | 用户系统自己的sessionId
 **$user_id** | 用户系统自己的userId
 **$DTTID** | 用户唯一标识
@@ -37,20 +36,20 @@
 ### 安装
 #### script引入
 ```
-<script src=".../dttrace.min.js"></script>
+<script src=".../ko-trace.min.js"></script>
 ```
 #### npm安装
 ```
-npm install dttrace --save
+npm install ko-trace --save
 
-import Kotrace from 'dttrace';
+import Kotrace from 'ko-trace';
 ```
 ## 用法
 ### 第一步 初始化
 
 ```
 Kotrace.init({
-    appKey:<申请应用获得的appKey，必填>,
+    serverUrl:<收集数据的服务器地址，必填>,
     getSessionId:function(){
         return <用户系统自己分配的sessionId>;
     },
@@ -58,7 +57,7 @@ Kotrace.init({
         return <用户系统自己分配的userId>;
     },
     sessionExpiration:'<Kotrace.js生成的session的过期时间，非必填>',
-    params:<自定义预置采集数据，会与Dttrace预置采集数据组合（Object），但不会覆盖Dttrace预置数据>，
+    params:<自定义预置采集数据，会与Kotrace预置采集数据组合（Object），但不会覆盖Kotrace预置数据>，
     debug:<是否开启Debug模式，非必填，默认false>
 });
 ```
@@ -69,13 +68,13 @@ Kotrace.init({
 
 #### 第一种：html标签自定义属性
 
-所有带有<**dttrace**>这个类名的html标签，点击时都会触发埋点操作，并一并采集 **data-dttrace-[参数名]** 设置的值
+所有带有<**kotrace**>这个类名的html标签，点击时都会触发埋点操作，并一并采集 **data-kotrace-[参数名]** 设置的值
 ```
-<button class="dttrace" data-dttrace-eventid="[对应值]" data-dttrace-[参数名]="[对应值]"></button>
+<button class="kotrace" data-kotrace-eventid="[对应值]" data-kotrace-[参数名]="[对应值]"></button>
 ```
-- **data-dttrace-eventid** 这个自定义属性必须要有
+- **data-kotrace-eventid** 这个自定义属性必须要有
 
-#### 第二种：调用Dttrace.launchRocket
+#### 第二种：调用Kotrace.launchRocket
 ```
 Kotrace.launchRocket(eventid,extraParams,event);
 ```
@@ -83,7 +82,7 @@ Kotrace.launchRocket(eventid,extraParams,event);
 - **extraParams** 非必选。额外采集的数据。类型：Object
 - **event** 非必选。JS事件对象
 
-#### 第三种：利用Dttrace.carryRocket对方法进行改造
+#### 第三种：利用Kotrace.carryRocket对方法进行改造
 
 **html**
 
@@ -104,17 +103,17 @@ btn.onclick=Kotrace.carryRocket(eventid,function(e){
 - **extraParamsTwo** 非必选。return 返回的采集数据，一般用于需要事件响应函数处理过的采集数据，优先级大于extraParamsOne。类型：Object
 
 
-#### 第四种：利用@DttraceRocket装饰器改造方法
+#### 第四种：利用@KotraceRocket装饰器改造方法
 ```
 import {PureComponent} from 'react';
-import {DttraceRocket} from 'dttrace';
+import {KotraceRocket} from 'kotrace';
 
 class App extends PureComponent{
    state={
    count:0
   }
 
-  @DttraceRocket(eventid,extraParamsOne)
+  @KotraceRocket(eventid,extraParamsOne)
   add(){
     const {count}=this.state;
     this.setState({
@@ -123,7 +122,7 @@ class App extends PureComponent{
     return extraParamsTwo;
   }
 
-  @DttraceRocket(eventid)
+  @KotraceRocket(eventid)
   subtract(){
     const {count}=this.state;
     if(count>0){
@@ -153,10 +152,10 @@ class App extends PureComponent{
 ### init
 参数名 | 参数类型 |参数说明
 ----|----|----
-**appKey** | String|必选。申请应用获得的appKey
+**serverUrl** | String|必选。收集数据的服务器地址
 **getSessionId** |Function |非必选。获取用户系统的sessionId的函数
 **getUserId** |Function|非必选。获取用户系统的userId的函数
-**sessionExpiration** | Number|非必选。Dttrace.js生成的session的过期时间,精确到毫秒。默认30分钟
+**sessionExpiration** | Number|非必选。Kotrace.js生成的session的过期时间,精确到毫秒。默认30分钟
 **params** | Oject |非必选。全局的额外采集数据，会与默认采集数据组合
 **debug** |Boolean|非必选。是否开启debug模式。默认false
 
@@ -164,7 +163,7 @@ class App extends PureComponent{
 
 ```
     Kotrace.init({
-        appKey:"dttrace-123456",
+        serverUrl:"http://localhost:8005",
         getSessionId: function(){
             return Kotrace.cookie.get('SESSIONID')
         },  
@@ -185,7 +184,7 @@ class App extends PureComponent{
 ----|----|----
 **eventid** | Number |必选。事件id
 **params** | Oject |非必选。该响应函数执行时，额外采集的数据
-**event** |Oject[Event]| 非必选。事件对象，Dttrace会采集其相关信息
+**event** |Oject[Event]| 非必选。事件对象，Kotrace会采集其相关信息
 
 **示例：**
 
@@ -255,8 +254,8 @@ class App extends PureComponent{
 ----|----|----
 **name** | String |非必选。对应数据名的预置采集数据值
 
-- 无参数时，会获取当前全局预置采集数据,自定义预置采集数据+Dttrace预置采集数据。
-- 若自定义预置采集数据和Dttrace预置采集数据存在同名字段，遵循自定义>Dttrace的原则。
+- 无参数时，会获取当前全局预置采集数据,自定义预置采集数据+Kotrace预置采集数据。
+- 若自定义预置采集数据和Kotrace预置采集数据存在同名字段，遵循自定义>Kotrace的原则。
 
 **示例：**
 
