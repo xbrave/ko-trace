@@ -1,0 +1,56 @@
+{
+  "name": "ko-trace",
+  "version": "1.0.0",
+  "description": "javascript library for log",
+  "main": "lib/ko-trace.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev:common": "rollup -w -c scripts/config.js --environment TARGET:dev-common",
+    "dev:react": "rollup -w -c scripts/config.js --environment TARGET:dev-react",
+    "build": "node scripts/build.js",
+    "react:webpack": "node test/react-webpack/dta.server.js",
+    "common:html": "pushstate-server test/common-html 8005",
+    "eslint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DtstackDev/dtstack_js_sdk.git"
+  },
+  "keywords": [
+    "log",
+    "trace",
+    "ko"
+  ],
+  "author": "xbrave",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xbrave/ko-trace/issues"
+  },
+  "homepage": "https://github.com/xbrave/ko-trace",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "chalk": "^2.4.1",
+    "history": "^4.7.2",
+    "html-webpack-plugin": "^3.2.0",
+    "ora": "^2.1.0",
+    "pushstate-server": "^3.0.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.59.2",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-uglify": "^4.0.0",
+    "webpack": "^4.8.3",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
